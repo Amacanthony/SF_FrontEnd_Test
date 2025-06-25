@@ -3,16 +3,20 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
-    port: 8080,
+    host: "::", // for local dev if needed
+    port: 8080
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: parseInt(process.env.PORT) || 8080,
+    strictPort: true,
+    allowedHosts: ['sf-frontend-test.onrender.com']
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === 'development' && componentTagger()
   ].filter(Boolean),
   resolve: {
     alias: {
