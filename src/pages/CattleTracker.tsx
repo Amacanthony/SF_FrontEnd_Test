@@ -29,19 +29,19 @@ const CattleTracker = () => {
   const mapInstanceRef = useRef<L.Map | null>(null);
 
   // Mock cattle data - in real implementation, this would come from your API
-  const cattleData: CattleData[] = [
-    { id: 1, name: "Bessie", lat: -1.2921, lng: 36.8219, status: "grazing", lastUpdate: "2 min ago", health: "good" },
-    { id: 2, name: "Daisy", lat: -1.2925, lng: 36.8225, status: "resting", lastUpdate: "5 min ago", health: "good" },
-    { id: 3, name: "Moobert", lat: -1.2918, lng: 36.8215, status: "moving", lastUpdate: "1 min ago", health: "fair" },
-    { id: 4, name: "Clarabelle", lat: -1.2930, lng: 36.8230, status: "grazing", lastUpdate: "3 min ago", health: "good" },
-    { id: 5, name: "Ferdinand", lat: -1.2915, lng: 36.8212, status: "resting", lastUpdate: "7 min ago", health: "alert" },
-  ];
+ const cattleData: CattleData[] = [
+  { id: 1, name: "Bessie", lat: 8.97507, lng: 7.37631, status: "grazing", lastUpdate: "2 min ago", health: "good" },
+  { id: 2, name: "Daisy", lat: 8.97530, lng: 7.37660, status: "resting", lastUpdate: "5 min ago", health: "good" },
+  { id: 3, name: "Moobert", lat: 8.97480, lng: 7.37600, status: "moving", lastUpdate: "1 min ago", health: "fair" },
+  { id: 4, name: "Clarabelle", lat: 8.97550, lng: 7.37700, status: "grazing", lastUpdate: "3 min ago", health: "good" },
+  { id: 5, name: "Ferdinand", lat: 8.97470, lng: 7.37580, status: "resting", lastUpdate: "7 min ago", health: "alert" },
+];
 
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
 
     // Initialize map
-    const map = L.map(mapRef.current).setView([-1.2921, 36.8219], 16);
+    const map = L.map(mapRef.current).setView([8.97507, 7.37631], 16);
     mapInstanceRef.current = map;
 
     // Add OpenStreetMap tiles
@@ -77,12 +77,12 @@ const CattleTracker = () => {
     });
 
     // Add farm boundary (example polygon)
-    const farmBoundary = [
-      [-1.2935, 36.8210],
-      [-1.2935, 36.8235],
-      [-1.2910, 36.8235],
-      [-1.2910, 36.8210]
-    ];
+ const farmBoundary = [
+    [8.9760, 7.3750],
+    [8.9760, 7.3775],
+    [8.9740, 7.3775],
+    [8.9740, 7.3750]
+  ];
 
     L.polygon(farmBoundary as L.LatLngExpression[], {
       color: '#1E7E34',
